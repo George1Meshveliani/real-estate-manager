@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import ApartmentList from './ApartmentList';
-import Filters from './Filters';
+import ApartmentList from './components/ApartmentList';
+import Filters from './components/Filters';
 import './App.css';
 
 const apartments = [

@@ -1,5 +1,5 @@
 import React from 'react';
-import './ApartmentList.css';
+import '../styles/ApartmentList.css';
 
 function ApartmentList({ apartments }) {
   return (

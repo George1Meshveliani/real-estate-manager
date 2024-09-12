@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './Filters.css';
+import '../styles/Filters.css';
 
 const allCities = [
   "Tbilisi",
