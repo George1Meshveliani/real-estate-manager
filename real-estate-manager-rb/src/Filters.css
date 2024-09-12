@@ -1,0 +1,29 @@
+.filters-container {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+  }
+  
+  .filter-group {
+    margin-bottom: 10px;
+  }
+  
+  .filter-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .filter-group input,
+  .filter-group select {
+    padding: 5px;
+    width: 200px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  

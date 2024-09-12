@@ -1,0 +1,17 @@
+.apartment-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 20px;
+  margin-top: 20px;
+}
+  
+.apartment-card {
+  border: 1px solid #ccc;
+  padding: 20px;
+  background-color: #fff;
+}
+
+.apartment-image {
+  width: 100%;
+  height: 200px; 
+}
