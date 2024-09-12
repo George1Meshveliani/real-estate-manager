@@ -1,13 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import './Filters.css';
 
+const allCities = [
+  "Tbilisi",
+  "Kutaisi",
+  "Telavi",
+  "Batumi",
+  "Rustavi"
+];
+
 function Filters({ filters, onFilterChange }) {
   const [minPrice, setMinPrice] = useState(filters.minPrice);
   const [maxPrice, setMaxPrice] = useState(filters.maxPrice);
   const [minArea, setMinArea] = useState(filters.minArea);
   const [maxArea, setMaxArea] = useState(filters.maxArea);
   const [rooms, setRooms] = useState(filters.rooms);
-  const [city, setCity] = useState(filters.city);
+  const [selectedCities, setSelectedCities] = useState(filters.city);
   const [forSale, setForSale] = useState(filters.forSale);
 
   useEffect(() => {
@@ -16,16 +24,25 @@ function Filters({ filters, onFilterChange }) {
     setMinArea(filters.minArea);
     setMaxArea(filters.maxArea);
     setRooms(filters.rooms);
-    setCity(filters.city);
+    setSelectedCities(filters.city);
     setForSale(filters.forSale);
   }, [filters]);
+
+  const handleCityChange = (city) => {
+    setSelectedCities(prevCities => {
+      const newCities = prevCities.includes(city)
+        ? prevCities.filter(c => c !== city)
+        : [...prevCities, city];
+      return newCities;
+    });
+  };
 
   const handleFilterSubmit = () => {
     if (minPrice > maxPrice || minArea > maxArea) {
       alert('Invalid filter values: minimum should not be more than maximum');
       return;
     }
-    onFilterChange({ minPrice, maxPrice, minArea, maxArea, rooms, city, forSale });
+    onFilterChange({ minPrice, maxPrice, minArea, maxArea, rooms, city: selectedCities, forSale });
   };
 
   return (
@@ -76,14 +93,19 @@ function Filters({ filters, onFilterChange }) {
 
       <div className="filter-group">
         <label>City:</label>
-        <select value={city} onChange={(e) => setCity(e.target.value)}>
-          <option value="All">All</option>
-          <option value="Tbilisi">Tbilisi</option>
-          <option value="Kutaisi">Kutaisi</option>
-          <option value="Telavi">Telavi</option>
-          <option value="Batumi">Batumi</option>
-          <option value="Rustavi">Rustavi</option>
-        </select>
+        <div className="checkbox-group">
+          {allCities.map(city => (
+            <div key={city} className="checkbox-item">
+              <input
+                type="checkbox"
+                id={city}
+                checked={selectedCities.includes(city)}
+                onChange={() => handleCityChange(city)}
+              />
+              <label htmlFor={city}>{city}</label>
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className="filter-group">
@@ -101,3 +123,4 @@ function Filters({ filters, onFilterChange }) {
 }
 
 export default Filters;
+

@@ -19,12 +19,11 @@ function App() {
     minArea: 500,
     maxArea: 1000,
     rooms: 0,
-    city: 'All',
+    city: [],
     forSale: 'All',
   });
 
   useEffect(() => {
-    // Load filters from localStorage
     const savedFilters = JSON.parse(localStorage.getItem('filters'));
     if (savedFilters) {
       setFilters(savedFilters);
@@ -32,7 +31,6 @@ function App() {
   }, []);
 
   useEffect(() => {
-    // Save filters to localStorage
     localStorage.setItem('filters', JSON.stringify(filters));
   }, [filters]);
 
@@ -43,7 +41,7 @@ function App() {
       apartment.price >= newFilters.minPrice && apartment.price <= newFilters.maxPrice &&
       apartment.area >= newFilters.minArea && apartment.area <= newFilters.maxArea &&
       (newFilters.rooms === 0 || apartment.rooms === newFilters.rooms) &&
-      (newFilters.city === 'All' || apartment.city === newFilters.city) &&
+      (newFilters.city.length === 0 || newFilters.city.includes(apartment.city)) &&
       (newFilters.forSale === 'All' || (newFilters.forSale === 'Sale' && apartment.forSale) || (newFilters.forSale === 'Rent' && !apartment.forSale))
     );
 

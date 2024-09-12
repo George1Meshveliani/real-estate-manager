@@ -1,4 +1,3 @@
-/* Filters.css */
 .filters-container {
     margin-bottom: 20px;
     padding: 20px;
@@ -31,6 +30,19 @@
     width: calc(50% - 10px);
   }
   
+  .checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .checkbox-item {
+    margin-right: 15px;
+  }
+  
+  .checkbox-item input {
+    margin-right: 5px;
+  }
+  
   .filter-submit-btn {
     padding: 10px 20px;
     background-color: #007bff;
@@ -46,6 +58,7 @@
   .filter-submit-btn:hover {
     background-color: #0056b3;
   }
+  
   
   
   
