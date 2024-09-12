@@ -7,10 +7,15 @@ function ApartmentList({ apartments }) {
       {apartments.map(apartment => (
         <div key={apartment.id} className="apartment-card">
           <img src={apartment.image} alt={apartment.city} className="apartment-image" />
-          <h3>{apartment.city}</h3>
-          <p>Price: ${apartment.price}</p>
-          <p>Area: {apartment.area} sqft</p>
-          <p>Rooms: {apartment.rooms}</p>
+          <div className="apartment-info">
+            <h3>{apartment.city}</h3>
+            <p>{apartment.address}</p>
+            <p>ZIP Code: {apartment.zip}</p>
+            <p>Price: ${apartment.price}</p>
+            <p>Area: {apartment.area} sqft</p>
+            <p>Rooms: {apartment.rooms}</p>
+            <p>{apartment.forSale ? 'For Sale' : 'For Rent'}</p>
+          </div>
         </div>
       ))}
     </div>
@@ -18,3 +23,5 @@ function ApartmentList({ apartments }) {
 }
 
 export default ApartmentList;
+
+

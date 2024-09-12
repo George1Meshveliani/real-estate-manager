@@ -1,27 +1,50 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ApartmentList from './ApartmentList';
 import Filters from './Filters';
 import './App.css';
 
 const apartments = [
-  { id: 1, price: 200000, area: 850, rooms: 3, city: 'Tbilisi', image: 'https://via.placeholder.com/150' },
-  { id: 2, price: 150000, area: 600, rooms: 2, city: 'Kutaisi', image: 'https://via.placeholder.com/150' },
-  { id: 3, price: 250000, area: 900, rooms: 4, city: 'Batumi', image: 'https://via.placeholder.com/150' },
-  { id: 4, price: 180000, area: 700, rooms: 2, city: 'Telavi', image: 'https://via.placeholder.com/150' },
-  { id: 5, price: 210000, area: 750, rooms: 3, city: 'Rustavi', image: 'https://via.placeholder.com/150' },
+  { id: 1, price: 200000, area: 850, rooms: 3, city: 'Tbilisi', address: '123 Main St', zip: '0100', forSale: true, image: 'https://via.placeholder.com/300' },
+  { id: 2, price: 150000, area: 600, rooms: 2, city: 'Kutaisi', address: '456 Elm St', zip: '4600', forSale: false, image: 'https://via.placeholder.com/300' },
+  { id: 3, price: 250000, area: 900, rooms: 4, city: 'Batumi', address: '789 Oak St', zip: '6000', forSale: true, image: 'https://via.placeholder.com/300' },
+  { id: 4, price: 180000, area: 700, rooms: 2, city: 'Telavi', address: '321 Pine St', zip: '2200', forSale: false, image: 'https://via.placeholder.com/300' },
+  { id: 5, price: 210000, area: 750, rooms: 3, city: 'Rustavi', address: '654 Cedar St', zip: '3700', forSale: true, image: 'https://via.placeholder.com/300' },
 ];
 
 function App() {
   const [filteredApartments, setFilteredApartments] = useState(apartments);
+  const [filters, setFilters] = useState({
+    minPrice: 100000,
+    maxPrice: 300000,
+    minArea: 500,
+    maxArea: 1000,
+    rooms: 0,
+    city: 'All',
+    forSale: 'All',
+  });
 
-  const handleFilterChange = (filters) => {
-    const { priceRange, areaRange, rooms, city } = filters;
+  useEffect(() => {
+    // Load filters from localStorage
+    const savedFilters = JSON.parse(localStorage.getItem('filters'));
+    if (savedFilters) {
+      setFilters(savedFilters);
+    }
+  }, []);
+
+  useEffect(() => {
+    // Save filters to localStorage
+    localStorage.setItem('filters', JSON.stringify(filters));
+  }, [filters]);
+
+  const handleFilterChange = (newFilters) => {
+    setFilters(newFilters);
 
     const filtered = apartments.filter(apartment =>
-      apartment.price >= priceRange[0] && apartment.price <= priceRange[1] &&
-      apartment.area >= areaRange[0] && apartment.area <= areaRange[1] &&
-      (rooms === 0 || apartment.rooms === rooms) &&
-      (city === 'All' || apartment.city === city)
+      apartment.price >= newFilters.minPrice && apartment.price <= newFilters.maxPrice &&
+      apartment.area >= newFilters.minArea && apartment.area <= newFilters.maxArea &&
+      (newFilters.rooms === 0 || apartment.rooms === newFilters.rooms) &&
+      (newFilters.city === 'All' || apartment.city === newFilters.city) &&
+      (newFilters.forSale === 'All' || (newFilters.forSale === 'Sale' && apartment.forSale) || (newFilters.forSale === 'Rent' && !apartment.forSale))
     );
 
     setFilteredApartments(filtered);
@@ -29,12 +52,13 @@ function App() {
 
   return (
     <div className="app-container">
-      <h1>Real Estate Manager - Georgia</h1>
-      <Filters onFilterChange={handleFilterChange} />
+      <h1 className="app-title">Real Estate Manager - Georgia</h1>
+      <Filters filters={filters} onFilterChange={handleFilterChange} />
       <ApartmentList apartments={filteredApartments} />
     </div>
   );
 }
 
 export default App;
+
 
