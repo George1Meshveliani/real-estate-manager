@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import ApartmentList from './components/ApartmentList';
 import Filters from './components/Filters';
-import './App.css';
+import AddAgent from './components/AddAgent';
+import './styles/App.css';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+const url = "http://localhost:3000/";
 
 const apartments = [
   { id: 1, price: 200000, area: 850, rooms: 3, city: 'Tbilisi', address: '123 Main St', zip: '0100', forSale: true, image: 'https://via.placeholder.com/300' },
@@ -48,15 +52,32 @@ function App() {
     setFilteredApartments(filtered);
   };
 
-  return (
+  if (window.location.href == url + "add-agent") {
+    return (
+      <>
+      <AddAgent />
+      </>
+    )
+  } 
+
+  // Here should be appartmanet info page url
+
+  else {
+    return (
+    <>
     <div className="app-container">
       <h1 className="app-title">Real Estate Manager - Georgia</h1>
+      <h3><a href='add-agent'>add-agent</a></h3>
       <Filters filters={filters} onFilterChange={handleFilterChange} />
       <ApartmentList apartments={filteredApartments} />
     </div>
-  );
+    </>
+    )
+  }
 }
 
 export default App;
+
+
 
 
