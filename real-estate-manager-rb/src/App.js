@@ -4,6 +4,7 @@ import Filters from './components/Filters';
 import AddAgent from './components/AddAgent';
 import './styles/App.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import ListingPage from './components/ListingPage';
 
 const url = "http://localhost:3000/";
 
@@ -60,14 +61,21 @@ function App() {
     )
   } 
 
-  // Here should be appartmanet info page url
+  if (window.location.href == url + "listing-page") {
+    return (
+      <>
+      <h1><a href="/">home</a></h1>
+      <ListingPage />
+      </>
+    )
+  }
 
   else {
     return (
     <>
     <div className="app-container">
       <h1 className="app-title">Real Estate Manager - Georgia</h1>
-      <h3><a href='add-agent'>add-agent</a></h3>
+      <h3><a href='add-agent'>add agent</a> <a href='listing-page'>listing page</a></h3>
       <Filters filters={filters} onFilterChange={handleFilterChange} />
       <ApartmentList apartments={filteredApartments} />
     </div>
