@@ -6,7 +6,7 @@ import './styles/App.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ListingPage from './components/ListingPage';
 
-const url = "http://localhost:3000/";
+const url = "https://real-estate-manager-seven.vercel.app/";
 
 const apartments = [
   { id: 1, price: 200000, area: 850, rooms: 3, city: 'Tbilisi', address: '123 Main St', zip: '0100', forSale: true, image: 'https://via.placeholder.com/300' },
