@@ -1,0 +1,97 @@
+{
+	"info": {
+		"_postman_id": "5f94747a-122e-482d-a1a6-5ef890fff99c",
+		"name": "real-estate-georgia-rb",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14080776"
+	},
+	"item": [
+		{
+			"name": "Get Agents",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token\n}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{protocol}}://{{url\n}}/{{api}}/agents",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{url\n}}"
+					],
+					"path": [
+						"{{api}}",
+						"agents"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Agents",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token\n}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{protocol}}://{{url\n}}/{{api}}/agents",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{url\n}}"
+					],
+					"path": [
+						"{{api}}",
+						"agents"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Real Estate Info",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token\n}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{protocol}}://{{url\n}}/{{api}}/real-estates",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{url\n}}"
+					],
+					"path": [
+						"{{api}}",
+						"real-estates"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
