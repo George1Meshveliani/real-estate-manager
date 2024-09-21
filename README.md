@@ -1,1 +1,1 @@
-https://real-estate-manager-seven.vercel.app/
+მარტივი პროტოტიპი https://real-estate-manager-seven.vercel.app/
