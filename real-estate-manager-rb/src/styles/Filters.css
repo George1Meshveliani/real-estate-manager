@@ -1,0 +1,64 @@
+.filters-container {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .filter-group {
+    margin-bottom: 15px;
+  }
+  
+  .filter-group label {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: block;
+  }
+  
+  .filter-group input,
+  .filter-group select {
+    padding: 8px;
+    width: 100%;
+    max-width: 200px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+  }
+  
+  .filter-group input[type="number"] {
+    width: calc(50% - 10px);
+  }
+  
+  .checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .checkbox-item {
+    margin-right: 15px;
+  }
+  
+  .checkbox-item input {
+    margin-right: 5px;
+  }
+  
+  .filter-submit-btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .filter-submit-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  
+  
+  
